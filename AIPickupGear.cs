@@ -5,6 +5,7 @@ namespace XRL.World.Parts {
     using XRL.World.AI.GoalHandlers;
     using Qud.API;
     using XRL.World.CleverGirl;
+    using XRL.World.Anatomy;
 
     [Serializable]
     public class CleverGirl_AIPickupGear : CleverGirl_INoSavePart {

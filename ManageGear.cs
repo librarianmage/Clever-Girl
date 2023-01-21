@@ -8,6 +8,7 @@ namespace XRL.World.CleverGirl {
     using XRL.Language;
     using XRL.UI;
     using XRL.World.Parts;
+    using XRL.World.Anatomy;
 
     public static class ManageGear {
         public static readonly Utility.InventoryAction ACTION = new Utility.InventoryAction {
