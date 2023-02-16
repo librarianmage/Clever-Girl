@@ -413,7 +413,7 @@ namespace XRL.World.CleverGirl {
                             type = part.GetTypeInstance();
                         }
                         effectiveObj = EncountersAPI.GetAnObjectNoExclusions(obj =>
-                            (obj.HasPart(nameof(PreparedCookingIngredient)) && obj.GetPartParameter(nameof(PreparedCookingIngredient), "type").Contains(type)) ||
+                            (obj.HasPart(nameof(PreparedCookingIngredient)) && obj.GetPartParameter<string>(nameof(PreparedCookingIngredient), "type").Contains(type)) ||
                             (obj.HasTag("LiquidCookingIngredient") && obj.createSample().LiquidVolume.GetPreparedCookingIngredient().Contains(type)));
                     }
                 } else {
