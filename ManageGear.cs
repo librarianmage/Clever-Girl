@@ -226,7 +226,7 @@ namespace XRL.World.CleverGirl {
                                 Popup.Show(Companion.The + Companion.ShortDisplayName + " can't switch primary limbs in combat.");
                             } else if (relevantBodyParts[selectedIndex].Abstract) {
                                 Popup.Show("This body part cannot be set as " + Companion.its + " primary.");
-                            } else if (!relevantBodyParts[selectedIndex].PreferedPrimary) {
+                            } else if (!relevantBodyParts[selectedIndex].PreferredPrimary) {
                                 relevantBodyParts[selectedIndex].SetAsPreferredDefault();
                                 Changed = true;
                             }
