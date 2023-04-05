@@ -4,6 +4,7 @@ namespace XRL.World.CleverGirl {
     using ConsoleLib.Console;
     using Qud.API;
     using System.Collections.Generic;
+    using System.Reflection;
     using XRL.Core;
     using XRL.Language;
     using XRL.UI;
@@ -226,7 +227,7 @@ namespace XRL.World.CleverGirl {
                                 Popup.Show(Companion.The + Companion.ShortDisplayName + " can't switch primary limbs in combat.");
                             } else if (relevantBodyParts[selectedIndex].Abstract) {
                                 Popup.Show("This body part cannot be set as " + Companion.its + " primary.");
-                            } else if (!relevantBodyParts[selectedIndex].PreferredPrimary) {
+                            } else if (!CheckPreferredPrimary(relevantBodyParts[selectedIndex])) {
                                 relevantBodyParts[selectedIndex].SetAsPreferredDefault();
                                 Changed = true;
                             }
@@ -311,6 +312,20 @@ namespace XRL.World.CleverGirl {
         private enum ScreenTab {
             Equipment = 0,
             Cybernetics = 1,
+        }
+
+        /// <summary>
+        /// BodyPart had a typo in one of its field names. The devs fixed this typo in [2.0.204.65].
+        /// This functions serves as a backwards compatible accessor until beta becomes stable.
+        /// </summary>
+        public static bool CheckPreferredPrimary(BodyPart part) {
+            // TODO: Remove this once [2.0.204.65] is long considered stable.
+            FieldInfo prop = part.GetType().GetField("PreferredPrimary") ??
+                             part.GetType().GetField("PreferedPrimary");
+            if (prop == null) {
+                Utility.MaybeLog("Could not find PreferredPrimary field in BodyPart. This could be critical?");
+            }
+            return (bool)prop.GetValue(part);
         }
     }
 }
