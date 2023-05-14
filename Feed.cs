@@ -87,7 +87,7 @@ namespace XRL.World.CleverGirl {
                                                 Icons: icons.ToArray(),
                                                 iconPosition: 6,
                                                 centerIntro: true,
-                                                defaultSelected: last,
+                                                DefaultSelected: last,
                                                 AllowEscape: true);
                 if (index == -1) {
                     return false;
@@ -372,7 +372,7 @@ namespace XRL.World.CleverGirl {
                                                  options.ToArray(),
                                                  Intro: "Selected " + countString + " of " + maxIngredients + " possible ingredients.",
                                                  AllowEscape: true,
-                                                 defaultSelected: last,
+                                                 DefaultSelected: last,
                                                  Icons: icons.ToArray(),
                                                  iconPosition: 6
                                                  );
@@ -617,7 +617,7 @@ namespace XRL.World.CleverGirl {
                                              MaxWidth: 72,
                                              RespectOptionNewlines: true,
                                              AllowEscape: true,
-                                             defaultSelected: Math.Max(index, 0),
+                                             DefaultSelected: Math.Max(index, 0),
                                              SpacingText: Popup.SPACING_DARK_LINE.Replace('=', '÷'));
                 if (index == -1) {
                     return false;

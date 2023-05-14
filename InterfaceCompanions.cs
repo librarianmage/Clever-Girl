@@ -21,7 +21,7 @@ namespace XRL.World.CleverGirl {
                                                 Icons: icons.ToArray(),
                                                 iconPosition: 6,
                                                 centerIntro: true,
-                                                defaultSelected: index,
+                                                DefaultSelected: index,
                                                 AllowEscape: true);
                 if (index == -1) {
                     return false;
