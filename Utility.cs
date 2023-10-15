@@ -9,7 +9,7 @@ namespace XRL.World.CleverGirl {
     using ConsoleLib.Console;
 
     public static class Utility {
-        public static bool debug;
+        public static bool debug = false;
 
         public static void MaybeLog(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0) {
             if (debug) {
