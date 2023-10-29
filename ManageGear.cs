@@ -221,7 +221,7 @@ namespace XRL.World.CleverGirl {
                                 Changed = true;
                                 CacheValid = false;
                             }
-                        } else if (screenTab != ScreenTab.Cybernetics && keys == Keys.Tab) {
+                        } else if (keys == Keys.Tab || (keys == Keys.MouseEvent && Keyboard.CurrentMouseEvent.Event == "Command:CmdInsert") || (keys == Keys.MouseEvent && Keyboard.CurrentMouseEvent.Event == "Command:Toggle")) {
                             if (!CanChangePrimaryLimb) {
                                 Popup.Show(Companion.The + Companion.ShortDisplayName + " can't switch primary limbs in combat.");
                             } else if (relevantBodyParts[selectedIndex].Abstract) {
