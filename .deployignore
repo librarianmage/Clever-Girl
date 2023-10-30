@@ -1,9 +1,0 @@
-.deployignore
-.editorconfig
-.git
-.gitignore
-bin
-obj
-scripts
-omnisharp.json
-Mods.csproj
