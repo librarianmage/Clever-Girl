@@ -4,18 +4,11 @@
 /// </summary>
 namespace XRL.World.CleverGirl {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
-    using System.Text.RegularExpressions;
     using System.Reflection;
-    using XRL.Rules;
-    using XRL.UI;
     using XRL.World.Anatomy;
-    using XRL.World.Parts;
     using XRL.World.Parts.Mutation;
-    using ConsoleLib.Console;
-    
+
     public static class BackwardsCompatibility {
 
         /// <summary>
@@ -28,7 +21,7 @@ namespace XRL.World.CleverGirl {
                 int variantIndex = seededRandom.Next(variants.Count);
                 Utility.MaybeLog("BaseMutation.SetVariant(...): '" + variants[variantIndex] + "' (index: " + variantIndex + ")");
 
-                MethodInfo method = null;
+                MethodInfo method;
 
                 // Look for new SetVariant() method
                 method = typeof(BaseMutation).GetMethod("SetVariant", new Type[] { typeof(string) });
