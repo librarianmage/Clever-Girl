@@ -8,8 +8,88 @@ namespace XRL.World.CleverGirl {
     using System.Reflection;
     using XRL.World.Anatomy;
     using XRL.World.Parts.Mutation;
+    using Qud.API;
 
     public static class BackwardsCompatibility {
+
+        /// <summary>
+        /// Qud Version [2.0.206.19]:
+        /// Some enums from JournalAccomplishment were moved into Qud.API
+        /// Ended up cutting a couple enums from the arguement list for now, as I couldn't figure out how to grab 2 sets of enums cleanly
+        /// Please restore the MuralCategory/MuralWeight default parameters once these stable Qud merges these enums into Qud.API
+        /// </summary>
+        public static void AddInspiredDishAccomplishment(string text, string muralText) {
+            // JournalAPI.AddAccomplishment(description, muralCategory: MuralCategory.CreatesSomething, muralWeight: MuralWeight.Low);
+            JournalAPI.AddAccomplishment(text, muralText);
+        }
+
+        /// <summary>
+        /// Qud Version [2.0.206.19]:
+        /// CyberneticsTerminal was refactored with newer more consistent field names.
+        /// PLEASE remove this backwards compatibility class ASAP, I dislike this hack of an implementation very much!
+        /// </summary>
+        public class CyberneticsTerminal {
+            // Any known renames of fields in order from newest -> oldest
+            private static readonly List<string> Known_Terminal = new List<string>{ "Terminal", "terminal" };
+            private static readonly List<string> Known_Subjects = new List<string>{ "Subject", "obj" };
+            private static readonly List<string> Known_Credits = new List<string>{ "Credits", "nCredits" };
+            private static readonly List<string> Known_Selected = new List<string>{ "Selected", "nSelected" };
+
+            private XRL.UI.CyberneticsTerminal terminal;
+
+            public CyberneticsTerminal(XRL.UI.CyberneticsTerminal terminal) {
+                this.terminal = terminal;
+            }
+
+            public CyberneticsTerminal(XRL.UI.CyberneticsScreenRemove screen) {
+                this.terminal = GetTerminal(screen);
+            }
+
+            public static XRL.UI.CyberneticsTerminal GetTerminal(XRL.UI.CyberneticsScreenRemove screen) {
+
+                // Technically field is in a base class, so flatten the hierarchy
+                if (XRL.UI.CyberneticsTerminal.instance != null) {
+                    return XRL.UI.CyberneticsTerminal.instance;
+                }
+
+                Utility.MaybeLog("Could not find CyberneticsTerminal. This could be critical?");
+                return null;
+            }
+
+
+            public GameObject GetSubject() {
+                foreach (var field in Known_Subjects) {
+                    FieldInfo prop = terminal.GetType().GetField(field);
+                    if (prop != null) {
+                        return (GameObject)prop.GetValue(terminal);
+                    }
+                }
+                Utility.MaybeLog("Could not find Subject field in CyberneticsTerminal. This could be critical?");
+                return null;
+            }
+
+            public void AddCredits(int value) {
+                foreach (var field in Known_Credits) {
+                    FieldInfo prop = terminal.GetType().GetField(field);
+                    if (prop != null) {
+                        prop.SetValue(terminal, (int)prop.GetValue(terminal) + value);
+                        return;
+                    }
+                }
+                Utility.MaybeLog("Could not find Credits field in CyberneticsTerminal. This could be critical?");
+            }
+
+            public int GetSelected() {
+                foreach (var field in Known_Selected) {
+                    FieldInfo prop = terminal.GetType().GetField(field);
+                    if (prop != null) {
+                        return (int)prop.GetValue(terminal);
+                    }
+                }
+                Utility.MaybeLog("Could not find Selected field in CyberneticsTerminal. This could be critical?");
+                return 0;
+            }
+        }
 
         /// <summary>
         /// Qud Version [2.0.206.8]:

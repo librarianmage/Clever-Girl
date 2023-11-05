@@ -40,12 +40,13 @@ namespace XRL.World.Parts.CleverGirl {
     [HarmonyPatch(typeof(CyberneticsTerminal), "set_currentScreen")]
     public static class CyberneticsTerminal_set_currentScreen_Patch {
         public static void Postfix(CyberneticsTerminal __instance) {
-            if (__instance.obj == The.Player) {
+            BackwardsCompatibility.CyberneticsTerminal terminal = new BackwardsCompatibility.CyberneticsTerminal(__instance);
+            if (terminal.GetSubject() == The.Player) {
                 return;
             }
             The.Player.ForeachInventoryAndEquipment(obj => {
                 if ((obj.GetPart<CyberneticsCreditWedge>() is CyberneticsCreditWedge part) && part.Credits > 0) {
-                    __instance.nCredits += part.Credits * obj.Count;
+                    terminal.AddCredits(part.Credits * obj.Count);
                     __instance.Wedges.Add(part);
                 }
             });
@@ -61,14 +62,15 @@ namespace XRL.World.Parts.CleverGirl {
     [HarmonyPatch(typeof(CyberneticsScreenRemove), "Activate")]
     public static class CyberneticsScreenRemove_Activate_Patch {
         public static void Postfix(CyberneticsScreenRemove __instance) {
-            if (__instance.terminal.obj == The.Player || The.Player.Inventory == null) {
+            BackwardsCompatibility.CyberneticsTerminal terminal = new BackwardsCompatibility.CyberneticsTerminal(__instance);
+            if (terminal.GetSubject() == The.Player || The.Player.Inventory == null) {
                 return;
             }
             var cybernetic = AccessTools.Field(typeof(CyberneticsScreenRemove), "cybernetic").GetValue(__instance) as List<GameObject>;
-            if (__instance.terminal.nSelected < cybernetic.Count) {
-                var implant = cybernetic[__instance.terminal.nSelected];
+            if (terminal.GetSelected() < cybernetic.Count) {
+                var implant = cybernetic[terminal.GetSelected()];
                 if (!implant.HasTag("CyberneticsNoRemove") && !implant.HasTag("CyberneticsDestroyOnRemoval")) {
-                    __instance.terminal.obj.Inventory?.RemoveObject(implant);
+                    terminal.GetSubject().Inventory?.RemoveObject(implant);
                     _ = The.Player.Inventory.AddObject(implant, Silent: true);
                 }
             }

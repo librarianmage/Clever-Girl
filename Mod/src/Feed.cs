@@ -463,10 +463,9 @@ namespace XRL.World.CleverGirl {
                             allCompanions += Companions[i].an();
                         }
                     }
-                    JournalAPI.AddAccomplishment("Your companions, " + allCompanions + ", inspired you to invent a mouthwatering dish called {{|" + newRecipe.GetDisplayName() + "}}.",
-                        "Surrounded by friends, the Carbide Chef =name= immortalized the memor" + (Companions.Count == 1 ? "y" : "ies") + " of " + allCompanions + " in the mouthwatering dish called {{|" + newRecipe.GetDisplayName() + "}}.",
-                        muralCategory: JournalAccomplishment.MuralCategory.CreatesSomething,
-                        muralWeight: JournalAccomplishment.MuralWeight.Low);
+
+                    BackwardsCompatibility.AddInspiredDishAccomplishment("Your companions, " + allCompanions + ", inspired you to invent a mouthwatering dish called {{|" + newRecipe.GetDisplayName() + "}}.",
+                        "Surrounded by friends, the Carbide Chef =name= immortalized the memor" + (Companions.Count == 1 ? "y" : "ies") + " of " + allCompanions + " in the mouthwatering dish called {{|" + newRecipe.GetDisplayName() + "}}.");
 
                     var AchievementManager = AccessTools.TypeByName("AchievementManager");
                     _ = AccessTools.Method(AchievementManager, "IncrementAchievement", new Type[] { typeof(string), typeof(int) }).Invoke(null, new object[] { "ACH_100_RECIPES", 1 });
