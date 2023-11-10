@@ -30,7 +30,6 @@ namespace XRL.World.CleverGirl {
         /// </summary>
         public class CyberneticsTerminal {
             // Any known renames of fields in order from newest -> oldest
-            private static readonly List<string> Known_Terminal = new List<string>{ "Terminal", "terminal" };
             private static readonly List<string> Known_Subjects = new List<string>{ "Subject", "obj" };
             private static readonly List<string> Known_Credits = new List<string>{ "Credits", "nCredits" };
             private static readonly List<string> Known_Selected = new List<string>{ "Selected", "nSelected" };
