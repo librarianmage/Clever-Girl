@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<options>
+	<option ID="OptionCleverGirlDebug" DisplayText="Enable debug logging in 'Player.log'." Category="Clever Girl" Type="Checkbox" Default="No"/>
+</options>

@@ -9,11 +9,8 @@ namespace XRL.World.CleverGirl {
     using ConsoleLib.Console;
 
     public static class Utility {
-        //TODO: Make "debug" a runtime option in game, so that I don't have to remember to set/unset this locally everytime I debug an update
-        public static bool debug = false;
-
         public static void MaybeLog(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0) {
-            if (debug) {
+            if (Static.OptionDebug) {
                 MetricsManager.LogInfo(filePath + ":" + lineNumber + ": " + message);
             }
         }
