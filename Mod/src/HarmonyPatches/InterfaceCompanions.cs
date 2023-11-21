@@ -37,8 +37,8 @@ namespace XRL.World.Parts.CleverGirl {
     }
 
     // include player inventory in collection of possible implants and credits
-    [HarmonyPatch(typeof(CyberneticsTerminal), "set_CurrentScreen")]
-    public static class CyberneticsTerminal_set_CurrentScreen_Patch {
+    [HarmonyPatch(typeof(CyberneticsTerminal), "CurrentScreen", MethodType.Setter)]
+    public static class CyberneticsTerminal_CurrentScreen_Setter_Patch {
         public static void Postfix(CyberneticsTerminal __instance) {
             if (__instance.Subject == The.Player) {
                 return;

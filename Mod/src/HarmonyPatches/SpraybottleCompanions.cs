@@ -11,7 +11,7 @@ namespace XRL.World.Parts.CleverGirl {
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
             bool Skipping = false;
             foreach (var inst in instructions) {
-                if (inst.Is(OpCodes.Callvirt, AccessTools.Method(typeof(GameObject), "get_Body"))) {
+                if (inst.Is(OpCodes.Callvirt, AccessTools.PropertyGetter(typeof(GameObject), "Body"))) {
                     // instead of an option of player equipped and inventory items, use PickObject
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Spraybottle_HandleEvent_Patch), "PickObject"));

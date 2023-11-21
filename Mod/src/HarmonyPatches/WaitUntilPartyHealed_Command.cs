@@ -91,7 +91,7 @@ namespace XRL.World.CleverGirl {
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ActionManager_RunSegment_Patch), "GetHealingMessage"));
                     LookingForPenalty = true;
                     continue;
-                } else if (LookingForPenalty && instruction.Is(OpCodes.Callvirt, AccessTools.Method(typeof(Statistic), "get_Penalty"))) {
+                } else if (LookingForPenalty && instruction.Is(OpCodes.Callvirt, AccessTools.PropertyGetter(typeof(Statistic), "Penalty"))) {
                     yield return instruction;
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ActionManager_RunSegment_Patch), "AddCompanionPenalties"));
                     LookingForPenalty = false;
