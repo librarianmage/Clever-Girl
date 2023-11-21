@@ -9,6 +9,7 @@ namespace XRL.World.CleverGirl {
     using ConsoleLib.Console;
 
     public static class Utility {
+        //TODO: Make "debug" a runtime option in game, so that I don't have to remember to set/unset this locally everytime I debug an update
         public static bool debug = false;
 
         public static void MaybeLog(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0) {
@@ -34,7 +35,7 @@ namespace XRL.World.CleverGirl {
         private static string GetKey(IPart part) {
             var key = "Kizby_CleverGirl_" + part.GetType().Name;
             if (part.ParentObject != null) {
-                key += "_" + part.ParentObject.id;
+                key += "_" + part.ParentObject.ID;
             }
             return key;
         }

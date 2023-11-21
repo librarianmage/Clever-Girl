@@ -199,7 +199,7 @@ namespace XRL.World.CleverGirl {
                 string targetName = Companions[0].One();
                 if (Companions.Count > 1) {
                     // make a fake object so we pluralize
-                    target = GameObject.create("Bones");
+                    target = GameObject.Create("Bones");
                     fakeTarget = true;
                     targetName = "Your companions";
                 }
@@ -432,7 +432,7 @@ namespace XRL.World.CleverGirl {
             string targetName = Companions[0].One();
             if (Companions.Count > 1) {
                 // make a fake object so we pluralize
-                target = GameObject.create("Bones");
+                target = GameObject.Create("Bones");
                 fakeTarget = true;
                 targetName = "Your companions";
             }
@@ -699,7 +699,7 @@ namespace XRL.World.CleverGirl {
             string targetName = Companions[0].One();
             if (Companions.Count > 1) {
                 // make a fake object so we pluralize
-                target = GameObject.create("Bones");
+                target = GameObject.Create("Bones");
                 fakeTarget = true;
                 targetName = "Your companions";
             }

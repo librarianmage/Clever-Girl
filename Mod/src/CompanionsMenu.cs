@@ -22,7 +22,7 @@ namespace XRL.World.CleverGirl {
                             if (c != 0) {
                                 return c;
                             }
-                            return a.id.CompareTo(b.id);
+                            return a.ID.CompareTo(b.ID);
                         }));
                         companionMap.Add(o.PartyLeader, set);
                     }
