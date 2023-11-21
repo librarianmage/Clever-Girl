@@ -120,14 +120,6 @@ namespace XRL.World.Parts {
         }
 
         public override bool HandleEvent(CommandEvent E) {
-            if (E.Command == "CleverGirl_CmdWaitUntilPartyHealed" && !AutoAct.ShouldHostilesInterrupt("r", popSpot: true)) {
-                AutoAct.Setting = "r";
-                The.Game.ActionManager.RestingUntilHealed = true;
-                The.Game.ActionManager.RestingUntilHealedCount = 0;
-                RestingUntilPartyHealed = true;
-                _ = ParentObject.UseEnergy(1000, "Pass");
-                Loading.SetLoadingStatus("Resting until party healed...");
-            }
             if (E.Command == "CleverGirl_CmdCompanionsMenu") {
                 CompanionsMenu.OpenMenu();
             }
