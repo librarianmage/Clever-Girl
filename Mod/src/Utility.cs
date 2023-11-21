@@ -1,16 +1,20 @@
-namespace XRL.World.CleverGirl {
+namespace CleverGirl {
     using System;
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Text.RegularExpressions;
+    using XRL;
     using XRL.Rules;
+    using XRL.World;
     using XRL.UI;
     using ConsoleLib.Console;
 
+    using static CleverGirl.Static;
+
     public static class Utility {
         public static void MaybeLog(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0) {
-            if (Static.OptionDebug) {
+            if (OptionDebug) {
                 MetricsManager.LogInfo(filePath + ":" + lineNumber + ": " + message);
             }
         }

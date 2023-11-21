@@ -3,7 +3,7 @@ namespace XRL.World.Parts {
     using System.Collections.Generic;
     using System.Linq;
     using XRL.UI;
-    using XRL.World.CleverGirl;
+    using CleverGirl;
 
     [Serializable]
     public class CleverGirl_AIManageAttributes : CleverGirl_INoSavePart {

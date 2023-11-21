@@ -1,5 +1,6 @@
-namespace XRL.World.CleverGirl {
+namespace CleverGirl {
     using System.Collections.Generic;
+    using XRL;
     using XRL.World;
     using XRL.Rules;
     using HarmonyLib;

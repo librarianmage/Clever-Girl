@@ -1,4 +1,4 @@
-namespace XRL.World.CleverGirl {
+namespace CleverGirl {
     using System;
     using System.Collections.Generic;
     using System.Collections.Immutable;
@@ -6,6 +6,7 @@ namespace XRL.World.CleverGirl {
     using ConsoleLib.Console;
     using HarmonyLib;
     using Qud.API;
+    using XRL.World;
     using XRL.Rules;
     using XRL.UI;
     using XRL.World.Effects;

@@ -1,4 +1,4 @@
-namespace XRL.World.CleverGirl {
+namespace CleverGirl {
     using XRL;
     using static XRL.UI.Options;
 

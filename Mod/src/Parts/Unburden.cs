@@ -1,8 +1,8 @@
 namespace XRL.World.Parts {
     using System;
-    using XRL.World.CleverGirl;
     using Qud.API;
     using System.Linq;
+    using CleverGirl;
 
     [Serializable]
     public class CleverGirl_AIUnburden : CleverGirl_INoSavePart {

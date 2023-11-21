@@ -4,8 +4,8 @@ namespace XRL.World.Parts {
     using System.Collections.Generic;
     using System.Linq;
     using XRL.UI;
-    using XRL.World.CleverGirl;
     using XRL.World.Parts.Mutation;
+    using CleverGirl;
 
     [Serializable]
     [HarmonyPatch]

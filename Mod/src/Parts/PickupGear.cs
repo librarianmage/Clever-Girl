@@ -4,8 +4,8 @@ namespace XRL.World.Parts {
     using System.Linq;
     using XRL.World.AI.GoalHandlers;
     using Qud.API;
-    using XRL.World.CleverGirl;
     using XRL.World.Anatomy;
+    using CleverGirl;
 
     [Serializable]
     public class CleverGirl_AIPickupGear : CleverGirl_INoSavePart {

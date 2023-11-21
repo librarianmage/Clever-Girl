@@ -1,9 +1,10 @@
 // equipment screen logic copied and modified from Caves of Qud's EquipmentScreen.cs
 
-namespace XRL.World.CleverGirl {
+namespace CleverGirl {
     using ConsoleLib.Console;
     using Qud.API;
     using System.Collections.Generic;
+    using XRL.World;
     using XRL.Core;
     using XRL.Language;
     using XRL.UI;

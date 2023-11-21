@@ -2,9 +2,8 @@ namespace XRL.World.Parts {
     using System;
     using System.Collections.Generic;
     using XRL.UI;
-    using XRL.World.Capabilities;
-    using XRL.World.CleverGirl;
-    using XRL.World.Parts.CleverGirl;
+    using CleverGirl;
+    using CleverGirl.HarmonyPatches;
 
     [Serializable]
     public class CleverGirl_EventListener : CleverGirl_INoSavePart {
