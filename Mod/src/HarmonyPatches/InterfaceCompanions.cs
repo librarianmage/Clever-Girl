@@ -37,16 +37,15 @@ namespace XRL.World.Parts.CleverGirl {
     }
 
     // include player inventory in collection of possible implants and credits
-    [HarmonyPatch(typeof(CyberneticsTerminal), "set_currentScreen")]
-    public static class CyberneticsTerminal_set_currentScreen_Patch {
+    [HarmonyPatch(typeof(CyberneticsTerminal), "set_CurrentScreen")]
+    public static class CyberneticsTerminal_set_CurrentScreen_Patch {
         public static void Postfix(CyberneticsTerminal __instance) {
-            BackwardsCompatibility.CyberneticsTerminal terminal = new BackwardsCompatibility.CyberneticsTerminal(__instance);
-            if (terminal.GetSubject() == The.Player) {
+            if (__instance.Subject == The.Player) {
                 return;
             }
             The.Player.ForeachInventoryAndEquipment(obj => {
                 if ((obj.GetPart<CyberneticsCreditWedge>() is CyberneticsCreditWedge part) && part.Credits > 0) {
-                    terminal.AddCredits(part.Credits * obj.Count);
+                    __instance.Credits += part.Credits * obj.Count;
                     __instance.Wedges.Add(part);
                 }
             });
@@ -62,15 +61,14 @@ namespace XRL.World.Parts.CleverGirl {
     [HarmonyPatch(typeof(CyberneticsScreenRemove), "Activate")]
     public static class CyberneticsScreenRemove_Activate_Patch {
         public static void Postfix(CyberneticsScreenRemove __instance) {
-            BackwardsCompatibility.CyberneticsTerminal terminal = new BackwardsCompatibility.CyberneticsTerminal(__instance);
-            if (terminal.GetSubject() == The.Player || The.Player.Inventory == null) {
+            if (__instance.Terminal.Subject == The.Player || The.Player.Inventory == null) {
                 return;
             }
-            var cybernetic = AccessTools.Field(typeof(CyberneticsScreenRemove), "cybernetic").GetValue(__instance) as List<GameObject>;
-            if (terminal.GetSelected() < cybernetic.Count) {
-                var implant = cybernetic[terminal.GetSelected()];
+            var cybernetic = AccessTools.Field(typeof(CyberneticsScreenRemove), "Cybernetics").GetValue(__instance) as List<GameObject>;
+            if (__instance.Terminal.Selected < cybernetic.Count) {
+                var implant = cybernetic[__instance.Terminal.Selected];
                 if (!implant.HasTag("CyberneticsNoRemove") && !implant.HasTag("CyberneticsDestroyOnRemoval")) {
-                    terminal.GetSubject().Inventory?.RemoveObject(implant);
+                    __instance.Terminal.Subject.Inventory?.RemoveObject(implant);
                     _ = The.Player.Inventory.AddObject(implant, Silent: true);
                 }
             }
