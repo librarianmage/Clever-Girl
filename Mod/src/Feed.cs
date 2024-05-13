@@ -44,7 +44,7 @@ namespace CleverGirl {
 
         private static List<GameObject> CollectUsableCampfires(GameObject Leader) {
             var result = new List<GameObject>();
-            Cell cell = Leader.pPhysics.CurrentCell;
+            Cell cell = Leader.Physics.CurrentCell;
             if (cell == null) {
                 // how are we interacting with someone not in a cell?
                 return result;
@@ -328,7 +328,7 @@ namespace CleverGirl {
                         description += servings + "&y " + (servings > 1 ? "servings" : "serving") + " of " + domainComponent.ingredientType;
                         break;
                     case PreparedCookingRecipieComponentLiquid liquidComponent:
-                        description += servings + "&y " + (servings > 1 ? "drams" : "dram") + " of " + LiquidVolume.getLiquid(liquidComponent.liquid).GetName();
+                        description += servings + "&y " + (servings > 1 ? "drams" : "dram") + " of " + LiquidVolume.GetLiquid(liquidComponent.liquid).GetName();
                         break;
                     default:
                         break;

@@ -9,7 +9,7 @@ namespace XRL.World.AI.GoalHandlers {
 
         public override void TakeAction() {
             Pop();
-            var currentCell = ParentBrain.pPhysics.CurrentCell;
+            var currentCell = ParentBrain.ParentObject.Physics.CurrentCell;
             if (currentCell == null) {
                 return;
             }

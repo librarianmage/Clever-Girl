@@ -8,7 +8,7 @@ namespace XRL.World.Parts {
     public class CleverGirl_AIUnburden : IPart {
 
         public static string PROPERTY => "CleverGirl_AIUnburden";
-        public override void Register(GameObject Object) {
+        public override void Register(GameObject Object, IEventRegistrar Registrar) {
             _ = Object.SetIntProperty(PROPERTY, 1);
         }
         public override void Remove() {

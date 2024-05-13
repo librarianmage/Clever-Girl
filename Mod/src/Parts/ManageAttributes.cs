@@ -16,7 +16,7 @@ namespace XRL.World.Parts {
         };
         public static string PROPERTY => "CleverGirl_AIManageAttributes";
         public static string HONINGATTRIBUTES_PROPERTY => PROPERTY + "_HoningAttributes";
-        public override void Register(GameObject Object) {
+        public override void Register(GameObject Object, IEventRegistrar Registrar) {
             _ = Object.SetIntProperty(PROPERTY, 1);
             if (!Object.HasStringProperty(HONINGATTRIBUTES_PROPERTY)) {
                 Object.SetStringProperty(HONINGATTRIBUTES_PROPERTY, "");

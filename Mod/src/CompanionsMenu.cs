@@ -44,7 +44,7 @@ namespace CleverGirl {
                 foreach (var companion in Companions) {
                     companionList.Add(companion);
                     names.Add(IndentString + CompanionName(companion));
-                    icons.Add(companion.pRender);
+                    icons.Add(companion.Render);
                     if (!companion.IsVisible()) {
                         status.Add((companion.IsAudible(The.Player) ? "{{W|" : "{{O|") + The.Player.DescribeDirectionToward(companion.CurrentCell) + "}}");
                         effects.Add("");
@@ -69,7 +69,7 @@ namespace CleverGirl {
             }
             HarvestFields(companionMap[The.Player]);
 
-            var selected = Utility.ShowTabularPopup("Companions", new List<List<string>>() { names, status, effects }, new List<int> { 30, 20, 20 }, icons, The.Player.pRender);
+            var selected = Utility.ShowTabularPopup("Companions", new List<List<string>>() { names, status, effects }, new List<int> { 30, 20, 20 }, icons, The.Player.Render);
             if (selected != -1) {
                 _ = companionList[selected].Twiddle();
             }

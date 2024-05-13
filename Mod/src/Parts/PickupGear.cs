@@ -10,7 +10,7 @@ namespace XRL.World.Parts {
     [Serializable]
     public class CleverGirl_AIPickupGear : IPart {
         public static string PROPERTY => "CleverGirl_AIPickupGear";
-        public override void Register(GameObject Object) {
+        public override void Register(GameObject Object, IEventRegistrar Registrar) {
             _ = Object.SetIntProperty(PROPERTY, 1);
         }
         public override void Remove() {
@@ -150,7 +150,7 @@ namespace XRL.World.Parts {
                         Utility.MaybeLog("Can't unequip the " + bodyPart.Equipped.DisplayNameOnlyStripped);
                         continue;
                     }
-                    if (thing.pPhysics.InInventory != ParentObject && thing.WeightEach - (bodyPart.Equipped?.Weight ?? 0) > capacity) {
+                    if (thing.Physics.InInventory != ParentObject && thing.WeightEach - (bodyPart.Equipped?.Weight ?? 0) > capacity) {
                         Utility.MaybeLog("No way to equip " + thing.DisplayNameOnlyStripped + " on " + bodyPart.Name + " without being overburdened");
                         continue;
                     }
@@ -159,7 +159,7 @@ namespace XRL.World.Parts {
                         continue;
                     }
                     if (thingComparer.Compare(thing, bodyPart.Equipped) < 0) {
-                        if (thing.pPhysics.InInventory == ParentObject) {
+                        if (thing.Physics.InInventory == ParentObject) {
                             Utility.MaybeLog(thing.DisplayNameOnlyStripped + " in my inventory is already better than my " +
                                 (bodyPart.Equipped?.DisplayNameOnlyStripped ?? "nothing"));
                             ignoreParts.Add(bodyPart);
@@ -174,9 +174,9 @@ namespace XRL.World.Parts {
         }
 
         private void GoGet(GameObject item) {
-            ParentObject.pBrain.Think("I want that " + item.DisplayNameOnlyStripped);
-            _ = ParentObject.pBrain.PushGoal(new CleverGirl_GoPickupGear(item));
-            _ = ParentObject.pBrain.PushGoal(new MoveTo(item.CurrentCell));
+            ParentObject.Brain.Think("I want that " + item.DisplayNameOnlyStripped);
+            _ = ParentObject.Brain.PushGoal(new CleverGirl_GoPickupGear(item));
+            _ = ParentObject.Brain.PushGoal(new MoveTo(item.CurrentCell));
         }
 
         /// <summary>

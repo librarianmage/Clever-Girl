@@ -17,7 +17,7 @@ namespace XRL.World.Parts {
         };
         public static string PROPERTY => "CleverGirl_AIManageSkills";
         public static string LEARNINGSKILLS_PROPERTY => PROPERTY + "_LearningSkills";
-        public override void Register(GameObject Object) {
+        public override void Register(GameObject Object, IEventRegistrar Registrar) {
             _ = Object.SetIntProperty(PROPERTY, 1);
             if (!Object.HasStringProperty(LEARNINGSKILLS_PROPERTY)) {
                 Object.SetStringProperty(LEARNINGSKILLS_PROPERTY, "");

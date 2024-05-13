@@ -23,7 +23,7 @@ namespace XRL.World.Parts {
         public static string FOLLOWERSWANTNEWMUTATIONS_PROPERTY => PROPERTY + "_FollowersWantNewMutations";
         public static string NEWMUTATIONSAVINGS_PROPERTY => PROPERTY + "_NewMutationSavings";
 
-        public override void Register(GameObject Object) {
+        public override void Register(GameObject Object, IEventRegistrar Registrar) {
             _ = Object.SetIntProperty(PROPERTY, 1);
             if (!Object.HasStringProperty(FOCUSINGMUTATIONS_PROPERTY)) {
                 Object.SetStringProperty(FOCUSINGMUTATIONS_PROPERTY, "");
