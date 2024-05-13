@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<AssemblyName>Mods</AssemblyName>
-		<PackageId>Mods</PackageId>
-		<Authors>gnarf, Armithaig, Freehold Games</Authors>
+		<AssemblyName>Clever_Girl</AssemblyName>
+		<PackageId>Clever_Girl</PackageId>
+		<Authors>Kizby, Zephyr0</Authors>
 		<TargetFramework>net46</TargetFramework>
 		<LangVersion>7</LangVersion>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
