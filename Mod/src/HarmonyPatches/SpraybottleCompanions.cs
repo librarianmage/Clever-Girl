@@ -1,3 +1,4 @@
+/*
 namespace CleverGirl.HarmonyPatches {
     using HarmonyLib;
     using System;
@@ -56,3 +57,4 @@ namespace CleverGirl.HarmonyPatches {
         }
     }
 }
+*/
