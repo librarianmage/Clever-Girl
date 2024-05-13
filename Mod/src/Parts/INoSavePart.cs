@@ -14,13 +14,13 @@ namespace CleverGirl {
         private static List<CleverGirl_INoSavePart> cachedParts;
         public static void Prefix(GameObject __instance) {
             cachedParts = __instance.GetPartsDescendedFrom<CleverGirl_INoSavePart>();
-            if (cachedParts.Count > 0) {
-                _ = __instance.PartsList.RemoveAll(p => p is CleverGirl_INoSavePart);
-            }
+            __instance.RemovePartsDescendedFrom<CleverGirl_INoSavePart>();
         }
         public static void Postfix(GameObject __instance) {
             if (cachedParts != null) {
-                __instance.PartsList.AddRange(cachedParts);
+                foreach (var part in cachedParts) {
+                    __instance.PartsList.Add(part);
+                }
                 cachedParts = null;
             }
         }
