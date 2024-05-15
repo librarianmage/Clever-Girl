@@ -35,10 +35,13 @@ namespace CleverGirl {
                             .SelectMany(x => x.GetTypes())
                             .Where(x => typeof(CleverGirl_INoSavePart).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract)
                             .ToList();
+                Utility.MaybeLog("INoSavePart Load Patch_1: " + classes.Count);
             }
             foreach (var clazz in classes) {
                 string prop = clazz.GetProperty("PROPERTY")?.GetValue(null) as string ?? "";
+                Utility.MaybeLog("INoSavePart Load Patch_2: " + prop);
                 if (prop != "" && __instance.HasProperty(prop)) {
+                    Utility.MaybeLog("INoSavePart Load Patch_3: true");
                     _ = __instance.AddPart(Activator.CreateInstance(clazz) as IPart);
                 }
             }
