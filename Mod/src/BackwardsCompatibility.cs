@@ -55,22 +55,26 @@ namespace CleverGirl {
 
         /// <summary>
         /// Qud Version [2.0.204.65]:
-        /// BodyPart had a typo in one of its field names that was fixed by devs.
+        /// BodyPart used to have a field named "PreferedPrimary" that was corrected to become a property named "PreferredPrimary".
+        /// They addressed the typo and changed it into a property instead of a field
         /// <returns>
         /// false if the processed part is NOT the preferred primary weapon, true otherwise
         /// </returns>
         /// </summary>
         public static bool CheckPreferredPrimary(BodyPart part) {
-            FieldInfo prop = part.GetType().GetField("PreferredPrimary") ??
-                             part.GetType().GetField("PreferedPrimary");
-            if (prop == null) {
-                Utility.MaybeLog("Could not find PreferredPrimary field in BodyPart. This could be critical?");
-
-                // This return will expend the player's action turn when it might not need to, but the potential NullReference error
-                // codepath below is arguably worse.
-                return false;
+            PropertyInfo new_property = part.GetType().GetProperty("PreferredPrimary");
+            if (new_property != null) {
+                return (bool)new_property.GetValue(part);
             }
-            return (bool)prop.GetValue(part);
+            FieldInfo old_field = part.GetType().GetField("PreferedPrimary");
+            if (old_field != null) {
+                return (bool)old_field.GetValue(part);
+            }
+
+            // This false return might expend the player's action turn regardless if primary limb changed or not, 
+            // but the alternative NullReference error is a much worse outcome.
+            Utility.MaybeLog("Could not find PreferredPrimary inside BodyPart. Will Assume this is not primary body part.");
+            return false;
         }
     }
 }
