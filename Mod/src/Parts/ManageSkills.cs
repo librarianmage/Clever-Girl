@@ -117,7 +117,7 @@ namespace XRL.World.Parts {
             LearningSkills = LearningSkills.Except(toDrop).ToList();
 
             if (0 < pool.Count) {
-                var which = pool.GetRandomElement(Utility.Random(this));
+                var which = pool.GetRandomElement(Utility.SeededRandom(this));
                 ParentObject.AddSkill(which.Item1);
 
                 DidX("learn", which.Item3, "!", ColorAsGoodFor: ParentObject);

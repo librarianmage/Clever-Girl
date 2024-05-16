@@ -67,7 +67,7 @@ namespace XRL.World.Parts {
             var apStat = ParentObject.Statistics["AP"];
 
             if (apStat.Value > 0 && HoningAttributes.Count > 0) {
-                var which = HoningAttributes.GetRandomElement(Utility.Random(this));
+                var which = HoningAttributes.GetRandomElement(Utility.SeededRandom(this));
                 ++ParentObject.Statistics[which].BaseValue;
                 ++apStat.Penalty;
 

@@ -135,7 +135,7 @@ namespace XRL.World.Parts {
                 return;
             }
 
-            var Random = Utility.Random(this);
+            var Random = Utility.SeededRandom(this);
             var which = pool.GetRandomElement(Random);
             if (which == null) {
                 ++NewMutationSavings;
@@ -244,7 +244,7 @@ namespace XRL.World.Parts {
             var mutations = __instance.ParentObject.GetPart<Mutations>();
             var allPhysicalMutations = mutations.MutationList.Where(m => m.IsPhysical() && m.CanLevel())
                                                              .ToList()
-                                                             .Shuffle(Utility.Random(manageMutations));
+                                                             .Shuffle(Utility.SeededRandom(manageMutations));
             var instead = allPhysicalMutations.Find(m => manageMutations.FocusingMutations.Contains(m.Name)) ??
                           allPhysicalMutations[0];
             var insteadKey = "RapidLevel_" + instead.GetMutationClass();

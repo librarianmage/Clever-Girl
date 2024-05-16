@@ -20,7 +20,12 @@ namespace CleverGirl {
         }
 
         private static readonly Dictionary<string, Random> RandomDict = new Dictionary<string, Random>();
-        public static Random Random(IPart part) {
+        /// <summary>
+        /// Create a random number generator that is seeded by the typename and ID of a part.
+        /// [Note to future authors]: I speculate this was originally implemented to combat "save scumming" (for companion skills/mutations), 
+        /// but I am unsure so please investigate the original author's intentions.
+        /// </summary>
+        public static Random SeededRandom(IPart part) {
             var key = GetKey(part);
             if (!RandomDict.ContainsKey(key)) {
                 MaybeLog("Creating Random " + key);
