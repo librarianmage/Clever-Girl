@@ -1,3 +1,4 @@
+/*
 namespace CleverGirl {
     using HarmonyLib;
     using System;
@@ -48,3 +49,4 @@ namespace CleverGirl {
         }
     }
 }
+*/

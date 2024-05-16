@@ -6,7 +6,7 @@ namespace XRL.World.Parts {
     using CleverGirl.HarmonyPatches;
 
     [Serializable]
-    public class CleverGirl_EventListener : CleverGirl_INoSavePart {
+    public class CleverGirl_EventListener : IPart {
         public bool RestingUntilPartyHealed;
         public override bool WantEvent(int ID, int cascade) =>
             base.WantEvent(ID, cascade) ||

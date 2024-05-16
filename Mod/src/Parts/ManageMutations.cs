@@ -9,7 +9,7 @@ namespace XRL.World.Parts {
 
     [Serializable]
     [HarmonyPatch]
-    public class CleverGirl_AIManageMutations : CleverGirl_INoSavePart {
+    public class CleverGirl_AIManageMutations : IPart {
         public static readonly Utility.InventoryAction ACTION = new Utility.InventoryAction {
             Name = "Clever Girl - Manage Mutations",
             Display = "manage mu{{inventoryhotkey|t}}ations",

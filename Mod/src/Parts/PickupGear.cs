@@ -8,7 +8,7 @@ namespace XRL.World.Parts {
     using CleverGirl;
 
     [Serializable]
-    public class CleverGirl_AIPickupGear : CleverGirl_INoSavePart {
+    public class CleverGirl_AIPickupGear : IPart {
         public static string PROPERTY => "CleverGirl_AIPickupGear";
         public override void Register(GameObject Object) {
             _ = Object.SetIntProperty(PROPERTY, 1);

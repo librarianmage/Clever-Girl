@@ -5,7 +5,7 @@ namespace XRL.World.Parts {
     using CleverGirl;
 
     [Serializable]
-    public class CleverGirl_AIUnburden : CleverGirl_INoSavePart {
+    public class CleverGirl_AIUnburden : IPart {
 
         public static string PROPERTY => "CleverGirl_AIUnburden";
         public override void Register(GameObject Object) {

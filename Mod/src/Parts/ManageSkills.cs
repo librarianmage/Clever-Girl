@@ -7,7 +7,7 @@ namespace XRL.World.Parts {
     using CleverGirl;
 
     [Serializable]
-    public class CleverGirl_AIManageSkills : CleverGirl_INoSavePart {
+    public class CleverGirl_AIManageSkills : IPart {
         public static readonly Utility.InventoryAction ACTION = new Utility.InventoryAction {
             Name = "Clever Girl - Manage Skills",
             Display = "manage s{{inventoryhotkey|k}}ills",
