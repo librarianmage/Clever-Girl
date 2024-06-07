@@ -140,7 +140,7 @@ namespace CleverGirl {
                 options.Add(Campfire.EnabledDisplay(Campfire.hasSkill, "Choose ingredients to cook with."));
                 actions.Add((leader, companions) => FeedFromIngredients(leader, companions, campfires[0].GetPart<Campfire>()));
 
-                options.Add(Campfire.EnabledDisplay(Campfire.hasSkill && CookingGamestate.instance.knownRecipies.Any(r => !r.Hidden), "Cook from a recipe."));
+                options.Add(Campfire.EnabledDisplay(Campfire.hasSkill && CookingGameState.instance.knownRecipies.Any(r => !r.Hidden), "Cook from a recipe."));
                 actions.Add((leader, companions) => FeedFromRecipe(leader, companions, campfires[0].GetPart<Campfire>()));
             }
             // only hand-feed one at a time from inventories
@@ -438,7 +438,7 @@ namespace CleverGirl {
                 targetName = "Your companions";
             }
 
-            Popup.Show(Campfire.DescribeMeal(ingredientTypes, mealObjects));
+            Popup.Show(Campfire.DescribeMeal(mealObjects));
             Popup.Show(targetName + target.GetVerb("eat") + " the meal.");
             if (ingredientTypes.Count > 0) {
                 ProceduralCookingEffect actualEffect;
@@ -450,7 +450,7 @@ namespace CleverGirl {
 
                     actualEffect = recipeOptions[index];
                     var newRecipe = CookingRecipe.FromIngredients(mealEffectiveIngredients, actualEffect, Companions[0].BaseDisplayName);
-                    _ = CookingGamestate.LearnRecipe(newRecipe);
+                    _ = CookingGameState.LearnRecipe(newRecipe);
                     Popup.Show("You create a new recipe for {{|" + newRecipe.GetDisplayName() + "}}!");
                     var allCompanions = Companions[0].an();
                     if (Companions.Count == 2) {
@@ -471,7 +471,7 @@ namespace CleverGirl {
                     var AchievementManager = AccessTools.TypeByName("AchievementManager");
                     _ = AccessTools.Method(AchievementManager, "IncrementAchievement", new Type[] { typeof(string), typeof(int) }).Invoke(null, new object[] { "ACH_100_RECIPES", 1 });
 
-                    _ = Leader.RemoveEffect(nameof(Inspired));
+                    _ = Leader.RemoveEffect(typeof(Inspired));
                 } else {
                     actualEffect = Campfire.GenerateEffectFromTypeList(ingredientTypes);
                 }
@@ -522,7 +522,7 @@ namespace CleverGirl {
             var componentCounts = new Dictionary<CookingRecipe, Dictionary<ICookingRecipeComponent, int>>();
             var recipeIngredients = new Dictionary<CookingRecipe, List<Ingredient>>();
             var uncookableMessages = new Dictionary<CookingRecipe, string>();
-            foreach (var knownRecipe in CookingGamestate.instance.knownRecipies) {
+            foreach (var knownRecipe in CookingGameState.instance.knownRecipies) {
                 if (knownRecipe.Hidden) {
                     continue;
                 }
