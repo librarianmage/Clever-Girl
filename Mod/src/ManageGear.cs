@@ -3,10 +3,12 @@
 namespace CleverGirl {
     using ConsoleLib.Console;
     using Qud.API;
+    using System;
     using System.Collections.Generic;
     using XRL.World;
     using XRL.Core;
     using XRL.Language;
+    using XRL;
     using XRL.UI;
     using XRL.World.Parts;
     using XRL.World.Anatomy;
@@ -20,11 +22,29 @@ namespace CleverGirl {
             Valid = Utility.InventoryAction.Adjacent,
         };
 
+        public static bool ManagePlayerCompanion(GameObject Companion) {
+
+            // In order to get it to work properly, swap player body with companion to get hardcoded "The.Player" references in 
+            // game code to work nicely.
+            GameObject tmpLeader = The.Game.Player.Body;
+            The.Game.Player.Body = Companion;
+
+            ManageTarget(Companion);
+
+            // Swap back afterwards.
+            The.Game.Player.Body = tmpLeader;
+
+            return false;  // Don't take an action for now, as not sure how that could be tracked with this method.
+        }
+
+        public static void ManageTarget(GameObject Target) {
+            const int EQUIPMENT_SCREEN_INDEX = 3;
+            Screens.CurrentScreen = EQUIPMENT_SCREEN_INDEX;
+            Screens.Show(Target);
+        }
+
+        [Obsolete]
         public static bool Manage(GameObject Leader, GameObject Companion) {
-
-            // TODO: Remove this when fixed
-            Popup.Show("WARNING: Companion's Manage Gear screen is currently bugged! Inputs (such as Esc) don't work as expected. Numpad-5 should reliably exit this menu.");
-
             GameManager.Instance.PushGameView("Equipment");
             var screenBuffer = ScreenBuffer.GetScrapBuffer1();
             var selectedIndex = 0;
