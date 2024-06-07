@@ -21,6 +21,10 @@ namespace CleverGirl {
         };
 
         public static bool Manage(GameObject Leader, GameObject Companion) {
+
+            // TODO: Remove this when fixed
+            Popup.Show("WARNING: Companion's Manage Gear screen is currently bugged! Inputs (such as Esc) don't work as expected. Numpad-5 should reliably exit this menu.");
+
             GameManager.Instance.PushGameView("Equipment");
             var screenBuffer = ScreenBuffer.GetScrapBuffer1();
             var selectedIndex = 0;
