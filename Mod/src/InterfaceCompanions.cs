@@ -16,11 +16,11 @@ namespace CleverGirl {
             }
             var index = 0;
             while (true) {
-                index = Popup.ShowOptionList("{{W|Your " + (companions.Count > 1 ? "companions are" : "companion is") + " ready to {{gray|BECOME}}.}}",
+                index = Popup.PickOption("{{W|Your " + (companions.Count > 1 ? "companions are" : "companion is") + " ready to {{gray|BECOME}}.}}",
                                                 Options: options.ToArray(),
                                                 Icons: icons.ToArray(),
-                                                iconPosition: 6,
-                                                centerIntro: true,
+                                                IconPosition: 6,
+                                                CenterIntro: true,
                                                 DefaultSelected: index,
                                                 AllowEscape: true);
                 if (index == -1) {

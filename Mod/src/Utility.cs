@@ -22,7 +22,7 @@ namespace CleverGirl {
         private static readonly Dictionary<string, Random> RandomDict = new Dictionary<string, Random>();
         /// <summary>
         /// Create a random number generator that is seeded by the typename and ID of a part.
-        /// [Note to future authors]: I speculate this was originally implemented to combat "save scumming" (for companion skills/mutations), 
+        /// [Note to future authors]: I speculate this was originally implemented to combat "save scumming" (for companion skills/mutations),
         /// but I am unsure so please investigate the original author's intentions.
         /// </summary>
         public static Random SeededRandom(IPart part) {
@@ -139,7 +139,7 @@ namespace CleverGirl {
             for (var i = 0; i < hotkeys.Length; ++i) {
                 hotkeys[i] = i < 26 ? (char)('a' + i) : ' ';
             }
-            return Popup.ShowOptionList(Title: Title, Options: lines, Hotkeys: hotkeys, IntroIcon: IntroIcon, Icons: Icons.ToArray(), AllowEscape: true);
+            return Popup.PickOption(Title: Title, Options: lines, Hotkeys: hotkeys, IntroIcon: IntroIcon, Icons: Icons.ToArray(), AllowEscape: true);
         }
 
         public class InventoryAction {

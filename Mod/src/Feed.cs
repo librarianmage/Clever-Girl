@@ -83,11 +83,11 @@ namespace CleverGirl {
             var last = 0;
             while (true) {
                 options[1] = (feedCount == 0 ? "&K" : "") + "Feed " + feedCount + " selected companion" + (feedCount == 1 ? "" : "s") + ".";
-                var index = Popup.ShowOptionList("{{W|Your companions {{watery|salivate}} expectantly.}}",
+                var index = Popup.PickOption("{{W|Your companions {{watery|salivate}} expectantly.}}",
                                                 Options: options.ToArray(),
                                                 Icons: icons.ToArray(),
-                                                iconPosition: 6,
-                                                centerIntro: true,
+                                                IconPosition: 6,
+                                                CenterIntro: true,
                                                 DefaultSelected: last,
                                                 AllowEscape: true);
                 if (index == -1) {
@@ -170,7 +170,7 @@ namespace CleverGirl {
                 }
             }
             while (true) {
-                var index = Popup.ShowOptionList("What's for dinner, boss?",
+                var index = Popup.PickOption("What's for dinner, boss?",
                                                 Options: options.ToArray(),
                                                 Hotkeys: keys.ToArray(),
                                                 IntroIcon: introIcon,
@@ -369,13 +369,13 @@ namespace CleverGirl {
             while (true) {
                 var countString = "{{" + (countIngredients > maxIngredients ? "R" : "C") + "|" + countIngredients + "}}";
                 options[0] = "{{W|Cook with the " + countString + " selected ingredients.}}";
-                var index = Popup.ShowOptionList("Choose ingredients to cook with.",
-                                                 options.ToArray(),
+                var index = Popup.PickOption("Choose ingredients to cook with.",
+                                                 Options: options.ToArray(),
                                                  Intro: "Selected " + countString + " of " + maxIngredients + " possible ingredients.",
                                                  AllowEscape: true,
                                                  DefaultSelected: last,
                                                  Icons: icons.ToArray(),
-                                                 iconPosition: 6
+                                                 IconPosition: 6
                                                  );
                 if (index == -1) {
                     return false;
@@ -444,8 +444,8 @@ namespace CleverGirl {
                 ProceduralCookingEffect actualEffect;
                 if (Leader.HasEffect<Inspired>()) {
                     var recipeOptions = Campfire.GenerateEffectsFromTypeList(ingredientTypes, 3);
-                    var index = Popup.ShowOptionList("You let inspiration guide you toward a mouthwatering dish.",
-                        recipeOptions.ConvertAll(effect => Campfire.ProcessEffectDescription(effect.GetTemplatedProceduralEffectDescription(), target)).ToArray(),
+                    var index = Popup.PickOption("You let inspiration guide you toward a mouthwatering dish.",
+                                                     Options: recipeOptions.ConvertAll(effect => Campfire.ProcessEffectDescription(effect.GetTemplatedProceduralEffectDescription(), target)).ToArray(),
                         Spacing: 1);
 
                     actualEffect = recipeOptions[index];
@@ -610,8 +610,8 @@ namespace CleverGirl {
             bool doCook;
             do {
                 doCook = false;
-                index = Popup.ShowOptionList("Choose a recipe",
-                                             relevantRecipes.Select(t => t.Item1).ToArray(),
+                index = Popup.PickOption("Choose a recipe",
+                                             Options: relevantRecipes.Select(t => t.Item1).ToArray(),
                                              Spacing: 1,
                                              Intro: showUncookable ? "" : "&K< " + uncookableMessages.Count + " hidden for missing ingredients >",
                                              MaxWidth: 72,
@@ -636,7 +636,7 @@ namespace CleverGirl {
                         "Back",
                     };
                     var cancelled = false;
-                    switch (Popup.ShowOptionList(Options: options.ToArray(),
+                    switch (Popup.PickOption(Options: options.ToArray(),
                                                  Intro: relevantRecipes[index].Item1,
                                                  MaxWidth: 72,
                                                  RespectOptionNewlines: true,

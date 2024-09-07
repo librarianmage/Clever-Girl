@@ -196,7 +196,7 @@ namespace XRL.World.Parts {
 
                     var choice = isFollower ? 0 : -1;
                     while (-1 == choice) {
-                        choice = Popup.ShowOptionList(Options: strings.ToArray(),
+                        choice = Popup.PickOption(Options: strings.ToArray(),
                                                       Spacing: 1,
                                                       Intro: "Choose a mutation for " + ParentObject.the + ParentObject.ShortDisplayName + ".",
                                                       MaxWidth: 78,
@@ -299,7 +299,7 @@ namespace XRL.World.Parts {
             }
 
             while (true) {
-                var index = Popup.ShowOptionList(Options: strings.ToArray(),
+                var index = Popup.PickOption(Options: strings.ToArray(),
                                                 Hotkeys: keys.ToArray(),
                                                 Intro: "What mutations should " + ParentObject.the + ParentObject.ShortDisplayName + " advance?",
                                                 AllowEscape: true);

@@ -178,7 +178,7 @@ namespace XRL.World.Parts {
             }
 
             while (true) {
-                var index = Popup.ShowOptionList(Options: strings.ToArray(),
+                var index = Popup.PickOption(Options: strings.ToArray(),
                                                 Hotkeys: keys.ToArray(),
                                                 Intro: "What skills should " + ParentObject.the + ParentObject.ShortDisplayName + " learn?",
                                                 AllowEscape: true);
