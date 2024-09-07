@@ -24,7 +24,7 @@ namespace CleverGirl {
 
         public static bool ManagePlayerCompanion(GameObject Companion) {
 
-            // In order to get it to work properly, swap player body with companion to get hardcoded "The.Player" references in 
+            // In order to get it to work properly, swap player body with companion to get hardcoded "The.Player" references in
             // game code to work nicely.
             GameObject tmpLeader = The.Game.Player.Body;
             The.Game.Player.Body = Companion;
@@ -251,7 +251,7 @@ namespace CleverGirl {
                                 Popup.Show(Companion.The + Companion.ShortDisplayName + " can't switch primary limbs in combat.");
                             } else if (relevantBodyParts[selectedIndex].Abstract) {
                                 Popup.Show("This body part cannot be set as " + Companion.its + " primary.");
-                            } else if (!BackwardsCompatibility.CheckPreferredPrimary(relevantBodyParts[selectedIndex])) {
+                            } else if (!relevantBodyParts[selectedIndex].PreferredPrimary) {
                                 relevantBodyParts[selectedIndex].SetAsPreferredDefault();
                                 Changed = true;
                             }

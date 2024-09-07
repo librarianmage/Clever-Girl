@@ -204,7 +204,15 @@ namespace XRL.World.Parts {
                     }
 
                     var result = choices[choice];
-                    BackwardsCompatibility.RandomizeMutationVariant(result, Random);  // let companions choose their variant 😄
+
+                    // let companions choose their variant 😄
+                    var variants = result.GetVariants();
+                    if (variants != null && variants.Count > 0) {
+                        var variantIndex = Random.Next(variants.Count);
+
+                        result.SetVariant(variants[variantIndex]);
+                    }
+
                     var mutationIndex = mutations.AddMutation(result, 1);
                     DidX("gain", mutations.MutationList[mutationIndex].DisplayName, "!", UsePopup: true, ColorAsGoodFor: ParentObject);
                     if (choice == newPartIndex) {
